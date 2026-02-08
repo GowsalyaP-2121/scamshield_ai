@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamShield AI - Scam Message Detector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ ScamShield AI</h1>
+            <p class="subtitle">Detect scam messages and identify risk levels</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="messageInput">Enter a message or text to analyze:</label>
+                <textarea 
+                    id="messageInput" 
+                    placeholder="Paste the suspicious message here... (e.g., SMS, email, or any text message)"
+                    rows="6"
+                ></textarea>
+                
+                <div class="button-group">
+                    <button id="analyzeBtn" class="btn-primary">🔍 Analyze Message</button>
+                    <button id="clearBtn" class="btn-secondary">Clear</button>
+                </div>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Analyzing message...</p>
+            </div>
+
+            <div id="result" class="result hidden">
+                <h2>Analysis Results</h2>
+                
+                <div id="riskLevel" class="risk-level">
+                    <h3>Risk Level: <span id="riskScore"></span></h3>
+                    <div class="risk-indicator">
+                        <div id="riskBar" class="risk-bar"></div>
+                    </div>
+                </div>
+
+                <div id="analysis" class="analysis-content"></div>
+
+                <div class="recommendations">
+                    <h3>✅ Do's</h3>
+                    <ul id="dosList"></ul>
+                    
+                    <h3>❌ Don'ts</h3>
+                    <ul id="dontsList"></ul>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+
+            <div class="api-key-section">
+                <h3>⚙️ API Configuration</h3>
+                <p>To use this application, you need a Google AI (Gemini) API key.</p>
+                <div class="api-input-group">
+                    <input 
+                        type="password" 
+                        id="apiKeyInput" 
+                        placeholder="Enter your Gemini API key"
+                    >
+                    <button id="saveApiKey" class="btn-secondary">Save Key</button>
+                </div>
+                <p class="api-info">
+                    Don't have an API key? 
+                    <a href="https://makersuite.google.com/app/apikey" target="_blank">Get one here</a>
+                </p>
+                <p class="api-status" id="apiStatus"></p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="examples">
+                <h3>Example Messages to Test:</h3>
+                <div class="example-buttons">
+                    <button class="example-btn" data-example="Congratulations! You've won $1,000,000! Click here to claim your prize now: http://suspicious-link.com">
+                        Prize Scam
+                    </button>
+                    <button class="example-btn" data-example="URGENT: Your bank account has been compromised. Please verify your details immediately at: http://fake-bank.com">
+                        Bank Scam
+                    </button>
+                    <button class="example-btn" data-example="Hi, this is a reminder about your upcoming appointment on Monday at 2 PM. Please confirm by replying to this message.">
+                        Legitimate Message
+                    </button>
+                </div>
+            </div>
+            
+            <p class="footer-text">
+                ScamShield AI - Protecting you from financial scams
+            </p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
