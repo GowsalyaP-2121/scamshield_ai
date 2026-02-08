@@ -102,6 +102,8 @@ class ScamShieldAI {
     }
 
     async callGeminiAPI(message) {
+        // Note: API key is sent as a query parameter per Gemini API requirements
+        // Users should keep their keys confidential and avoid sharing network logs
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`;
 
         const prompt = `Analyze the following message for potential scam indicators and provide a detailed assessment:
@@ -240,16 +242,12 @@ Respond only with valid JSON.`;
 
     showSuccess(message) {
         this.elements.error.classList.remove('hidden');
-        this.elements.error.style.background = '#d1fae5';
-        this.elements.error.style.borderColor = '#10b981';
-        this.elements.error.style.color = '#065f46';
+        this.elements.error.classList.add('success');
         this.elements.error.textContent = `✓ ${message}`;
         
         setTimeout(() => {
             this.elements.error.classList.add('hidden');
-            this.elements.error.style.background = '';
-            this.elements.error.style.borderColor = '';
-            this.elements.error.style.color = '';
+            this.elements.error.classList.remove('success');
         }, 3000);
     }
 
